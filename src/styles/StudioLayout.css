@@ -1,0 +1,75 @@
+/* Studio Layout */
+.studio-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.studio-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 100px;
+    /* Space for Hub */
+}
+
+/* The Hub (Bottom Action Center) */
+.studio-hub-container {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    /* Let clicks pass through around the hub */
+    z-index: 100;
+}
+
+.studio-hub {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border-radius: 32px;
+}
+
+.hub-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.5;
+    transition: all 0.3s var(--ease-out-expo);
+    transform: scale(0.9);
+}
+
+.hub-action.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hub-action:hover {
+    opacity: 0.8;
+}
+
+/* Main FAB */
+.hub-main-action {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s var(--ease-out-expo);
+}
+
+.hub-main-action:active {
+    transform: scale(0.95);
+}

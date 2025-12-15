@@ -1,6 +1,6 @@
 /* Create Flow Styles */
 .create-view {
-    background-color: var(--color-bg-primary);
+    background-color: var(--color-bg-base);
     height: 100%;
 }
 
@@ -35,7 +35,7 @@
 .wizard-footer {
     padding: var(--spacing-4);
     border-top: 1px solid var(--color-border);
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-surface);
 }
 
 /* Step 1: Select Clips */
@@ -66,7 +66,7 @@
     width: 20px;
     height: 20px;
     background: var(--color-accent);
-    color: var(--color-bg-primary);
+    color: var(--color-bg-base);
     border-radius: 50%;
     font-size: 10px;
     font-weight: 700;
@@ -83,7 +83,7 @@
 }
 
 .rhythm-card {
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-surface-glass);
     padding: var(--spacing-4);
     border-radius: 12px;
     border: 1px solid transparent;
@@ -92,7 +92,7 @@
 }
 
 .rhythm-card.active {
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-surface);
     border-color: var(--color-accent);
 }
 
@@ -110,7 +110,7 @@
 .btn-primary {
     width: 100%;
     background: var(--color-accent);
-    color: var(--color-bg-primary);
+    color: var(--color-bg-base);
     padding: 16px;
     border-radius: 30px;
     font-weight: 600;
@@ -128,7 +128,7 @@
 
 /* Duration Slider */
 .duration-control {
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-surface-glass);
     padding: var(--spacing-4);
     border-radius: 12px;
     margin-bottom: var(--spacing-6);

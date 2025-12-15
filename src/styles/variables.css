@@ -1,51 +1,58 @@
 :root {
-    /* Colors - Cinematic Dark Theme */
-    --color-bg-primary: #050505;
-    --color-bg-secondary: #0a0a0a;
-    --color-bg-tertiary: #141414;
-    --color-bg-overlay: rgba(0, 0, 0, 0.7);
+    /* Colors - Immersive Glass (V2) */
+    --color-bg-base: #000000;
+    /* OLED Black */
+    --color-bg-surface: #0f0f0f;
+    /* Deep Grey */
+    --color-bg-surface-glass: rgba(20, 20, 20, 0.6);
+    --color-bg-overlay: rgba(0, 0, 0, 0.85);
 
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #a1a1a1;
-    --color-text-tertiary: #525252;
+    /* Text */
+    --color-text-primary: #ededed;
+    --color-text-secondary: #888888;
+    --color-text-muted: #444444;
 
+    /* Accents */
     --color-accent: #ffffff;
-    /* Stark white for cinematic feel */
-    --color-accent-dim: #404040;
+    --color-accent-soft: rgba(255, 255, 255, 0.1);
+    --color-accent-glow: 0 0 20px rgba(255, 255, 255, 0.15);
 
-    --color-border: #262626;
+    /* Borders */
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-hover: rgba(255, 255, 255, 0.2);
 
     /* Typography */
-    --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-size-2xs: 0.65rem;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
     --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
 
-    /* Spacing */
-    --spacing-1: 0.25rem;
-    --spacing-2: 0.5rem;
-    --spacing-3: 0.75rem;
-    --spacing-4: 1rem;
-    --spacing-6: 1.5rem;
-    --spacing-8: 2rem;
-    --spacing-12: 3rem;
+    /* Spacing & Layout */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --app-max-width: 480px;
 
-    /* Layout */
-    --header-height: 60px;
-    --bottom-nav-height: 80px;
-    /* Taller for easier touch */
-    --max-width-mobile: 480px;
+    /* Glass Effect */
+    --glass-blur: 20px;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
     /* Animation */
-    --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-normal: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-slow: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --anim-duration: 0.4s;
 }
 
-@media (prefers-color-scheme: light) {
-    /* Enforce Dark Mode for Cinematic App regardless of system preference for now */
+body {
+    background-color: #000;
+    /* Ensure overscroll is black */
+    color: var(--color-text-primary);
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
 }

@@ -1,20 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, MoreHorizontal, Play, Send, Sparkles, X } from 'lucide-react';
+import { ChevronLeft, MoreHorizontal, Send, Sparkles, GripVertical } from 'lucide-react';
 import '../styles/Editor.css';
 
 export default function EditorView({ config, selectedClips, onBack }) {
-    const [timeline, setTimeline] = useState(selectedClips.map((c, i) => ({
-        ...c,
-        // Simulate AI duration cut
-        editDuration: Math.max(2, c.duration * 0.5).toFixed(1)
-    })));
+    // Initialize timeline
+    const [timeline, setTimeline] = useState(() => {
+        return selectedClips.map((c, i) => ({
+            ...c,
+            editDuration: Math.max(2, c.duration * 0.5).toFixed(1)
+        }));
+    });
 
     const [chatOpen, setChatOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { id: 1, role: 'ai', text: `I've assembled a ${config.rhythm} cut using your ${selectedClips.length} clips. Want to tweak the pacing?` }
+        { id: 1, role: 'ai', text: `I've assembled a ${config.rhythm} cut. Drag to reorder, or tell me what to change.` }
     ]);
     const [inputText, setInputText] = useState('');
     const messagesEndRef = useRef(null);
+
+    // Drag & Drop Refs
+    const dragItem = useRef();
+    const dragOverItem = useRef();
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -24,93 +30,119 @@ export default function EditorView({ config, selectedClips, onBack }) {
         if (chatOpen) scrollToBottom();
     }, [messages, chatOpen]);
 
-    // Mock AI Response
+    // Drag Handlers
+    const onDragStart = (e, position) => {
+        dragItem.current = position;
+        // e.target.classList.add('dragging'); // Optional visual feedback
+        e.dataTransfer.effectAllowed = "move"; // Better UX
+    };
+
+    const onDragEnter = (e, position) => {
+        dragOverItem.current = position;
+    };
+
+    const onDragEnd = (e) => {
+        // e.target.classList.remove('dragging');
+        const copyListItems = [...timeline];
+        const dragItemContent = copyListItems[dragItem.current];
+
+        // Remove and Insert
+        copyListItems.splice(dragItem.current, 1);
+        copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+
+        dragItem.current = null;
+        dragOverItem.current = null;
+        setTimeline(copyListItems);
+    };
+
     const handleSend = () => {
         if (!inputText.trim()) return;
-
         const userMsg = { id: Date.now(), role: 'user', text: inputText };
         setMessages(prev => [...prev, userMsg]);
         setInputText('');
 
-        // Simulate thinking delay
         setTimeout(() => {
-            const aiResponse = {
+            setMessages(prev => [...prev, {
                 id: Date.now() + 1,
                 role: 'ai',
-                text: "Got it. I'll smooth out those transitions and shorten the middle section to keep the energy high."
-            };
-            setMessages(prev => [...prev, aiResponse]);
+                text: "Refining the cut based on your input..."
+            }]);
         }, 1000);
     };
 
     return (
         <div className="editor-layout fade-in">
+            {/* Glass Header */}
             <header className="editor-header">
-                <button onClick={onBack}><ChevronLeft size={24} /></button>
+                <button onClick={onBack}><ChevronLeft size={24} color="#fff" /></button>
                 <div style={{ textAlign: 'center' }}>
-                    <h3 style={{ fontSize: '14px' }}>Draft Cut</h3>
-                    <span style={{ fontSize: '10px', color: '#888' }}>{timeline.length} clips · {config.duration}s</span>
+                    <h3 style={{ fontSize: '14px', fontWeight: 600 }}>Draft Cut</h3>
+                    <span style={{ fontSize: '10px', color: 'var(--color-text-secondary)' }}>
+                        {config.rhythm} Mode · {timeline.length} clips
+                    </span>
                 </div>
-                <button><MoreHorizontal size={24} /></button>
+                <button><MoreHorizontal size={24} color="#fff" /></button>
             </header>
 
-            {/* Timeline List */}
+            {/* Draggable Timeline */}
             <div className="timeline-area">
                 {timeline.map((clip, idx) => (
-                    <div key={clip.id} className="timeline-tile">
+                    <div
+                        key={clip.id}
+                        className="timeline-tile"
+                        draggable
+                        onDragStart={(e) => onDragStart(e, idx)}
+                        onDragEnter={(e) => onDragEnter(e, idx)}
+                        onDragEnd={onDragEnd}
+                        onDragOver={(e) => e.preventDefault()}
+                    >
+                        <div className="tile-handle">
+                            <GripVertical size={20} />
+                        </div>
                         <div className="tile-thumb" style={{ background: clip.thumbnail }} />
                         <div className="tile-info">
                             <h4>{clip.title}</h4>
                             <div className="tile-meta">
-                                <span>{clip.source}</span>
-                                <span>•</span>
                                 <span className="tile-duration">{clip.editDuration}s</span>
+                                <span>•</span>
+                                <span>{clip.source}</span>
                             </div>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', opacity: 0.5 }}>
-                            <MoreHorizontal size={16} />
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Director Chat Dock */}
-            <div className="director-chat-dock">
-                {!chatOpen ? (
-                    <div className="chat-input-area" onClick={() => setChatOpen(true)}>
-                        <Sparkles size={18} color="var(--color-accent)" />
-                        <span style={{ fontSize: '12px', color: '#888' }}>Ask Director to edit...</span>
+            {/* Director Chat V2 */}
+            <div className={`director-chat-dock ${chatOpen ? 'open' : ''}`}>
+                {/* Chat content rendered conditionally or just always there but small */}
+                {/* For V2, let's keep it simple: always show input, expand on focus/click */}
+
+                {chatOpen && (
+                    <div className="chat-history">
+                        {messages.map(m => (
+                            <div key={m.id} className={`chat-message ${m.role}`}>
+                                {m.text}
+                            </div>
+                        ))}
+                        <div ref={messagesEndRef} />
                     </div>
-                ) : (
-                    <>
-                        <div className="panel-handle" style={{
-                            width: 40, height: 4, background: '#333', borderRadius: 2, margin: '8px auto'
-                        }} onClick={() => setChatOpen(false)} />
-
-                        <div className="chat-history">
-                            {messages.map(m => (
-                                <div key={m.id} className={`chat-message ${m.role}`}>
-                                    {m.text}
-                                </div>
-                            ))}
-                            <div ref={messagesEndRef} />
-                        </div>
-
-                        <div className="chat-input-area">
-                            <input
-                                className="chat-input-field"
-                                placeholder="Make it faster..."
-                                value={inputText}
-                                onChange={(e) => setInputText(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                                autoFocus
-                            />
-                            <button className="btn-send" onClick={handleSend}>
-                                <Send size={16} fill="currentColor" />
-                            </button>
-                        </div>
-                    </>
                 )}
+
+                <div className="chat-input-area" onClick={() => setChatOpen(true)}>
+                    {!chatOpen && <Sparkles size={18} color="var(--color-accent)" style={{ marginRight: 8 }} />}
+                    <input
+                        className="chat-input-field"
+                        placeholder="Tell Director to change something..."
+                        value={inputText}
+                        onChange={e => setInputText(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' && handleSend()}
+                    />
+                    {chatOpen && (
+                        <button className="btn-send" onClick={handleSend}>
+                            <Send size={16} />
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 /* Library Styles */
 .library-view {
-    background-color: var(--color-bg-primary);
+    background-color: var(--color-bg-base);
 }
 
 .library-header {
@@ -22,7 +22,7 @@
     width: 100%;
     padding: 12px 16px;
     padding-left: 44px;
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-surface-glass);
     border: 1px solid transparent;
     border-radius: 12px;
     color: var(--color-text-primary);
@@ -33,7 +33,7 @@
 .search-input:focus {
     outline: none;
     border-color: var(--color-accent-dim);
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-surface);
 }
 
 .search-icon {
@@ -41,7 +41,7 @@
     left: 14px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--color-text-tertiary);
+    color: var(--color-text-muted);
 }
 
 /* Filter Chips */
@@ -62,7 +62,7 @@
 
 .filter-chip {
     padding: 6px 14px;
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-surface-glass);
     border-radius: 20px;
     font-size: var(--font-size-xs);
     color: var(--color-text-secondary);
@@ -73,7 +73,7 @@
 
 .filter-chip.active {
     background: var(--color-text-primary);
-    color: var(--color-bg-primary);
+    color: var(--color-bg-base);
     border-color: var(--color-text-primary);
     font-weight: 600;
 }
@@ -120,7 +120,7 @@
 
 .clip-thumb {
     aspect-ratio: 9/16;
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-surface-glass);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -173,7 +173,7 @@
 .empty-state {
     padding: var(--spacing-12) var(--spacing-6);
     text-align: center;
-    color: var(--color-text-tertiary);
+    color: var(--color-text-muted);
 }
 
 .empty-state p {
