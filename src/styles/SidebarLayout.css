@@ -106,26 +106,24 @@
 
     .sidebar-pane {
         display: none;
-        /* Hide sidebar on mobile for now, implementing drawer later? Or bottom nav style override */
     }
 
     .main-stage {
         height: 100%;
         border-radius: 0;
         border: none;
+        padding-bottom: 80px;
+        /* Space for Mobile Nav */
     }
 
-    /* Simple mobile nav bar fixed bottom */
-    .mobile-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: var(--bg-paper);
-        border-top: 1px dashed var(--border-edge);
-        display: flex;
-        padding: 10px;
-        justify-content: space-around;
-        z-index: 100;
+    /* Show Mobile NavWrapper */
+    .mobile-nav-wrapper {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-nav-wrapper {
+        display: none;
     }
 }

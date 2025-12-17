@@ -1,0 +1,46 @@
+/* Mobile Touch Polish */
+
+/* 1. Prevent Text Scaling */
+body {
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+}
+
+/* 2. Increase Touch Targets */
+button,
+.sidebar-btn,
+.pencil-btn,
+.mobile-nav-item,
+.card,
+.menu-card,
+.clip-card,
+.select-tile,
+.toggle-switch {
+    min-height: 44px;
+    /* Apple Human Interface Guideline minimum */
+    min-width: 44px;
+    cursor: pointer;
+}
+
+/* 3. Safe Area Padding for iPhone X+ */
+.mobile-pencil-case {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+.main-stage {
+    padding-top: env(safe-area-inset-top);
+}
+
+/* 4. Disable Select on UI elements */
+.brand-header,
+.nav-section-title,
+.sidebar-btn,
+.mobile-nav-item {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 5. Smooth Scroll adjustments */
+.main-stage {
+    -webkit-overflow-scrolling: touch;
+}

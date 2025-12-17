@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { LayoutGrid, PlaySquare, Plus, User } from 'lucide-react';
 import '../../styles/SidebarLayout.css';
+import MobileNav from '../navigation/MobileNav';
 
 export default function SidebarLayout() {
     return (
@@ -38,13 +39,10 @@ export default function SidebarLayout() {
             <main className="main-stage">
                 <Outlet />
 
-                {/* Mobile Navigation (Visible only on small screens) */}
-                <nav className="mobile-nav" style={{ display: 'none' }}>
-                    {/* To be implemented if we detect mobile, but CSS handles visibility */}
-                    <NavLink to="/"><LayoutGrid /></NavLink>
-                    <NavLink to="/create"><Plus /></NavLink>
-                    <NavLink to="/library"><PlaySquare /></NavLink>
-                </nav>
+                {/* Mobile Navigation (Visible only on small screens via CSS) */}
+                <div className="mobile-nav-wrapper">
+                    <MobileNav />
+                </div>
             </main>
         </div>
     );
