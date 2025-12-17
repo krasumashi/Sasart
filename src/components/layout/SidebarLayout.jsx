@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { LayoutGrid, PlaySquare, Plus, User } from 'lucide-react';
-import '../styles/SidebarLayout.css';
+import '../../styles/SidebarLayout.css';
 
 export default function SidebarLayout() {
     return (
