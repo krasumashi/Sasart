@@ -1,58 +1,41 @@
 :root {
-    /* Colors - Immersive Glass (V2) */
-    --color-bg-base: #000000;
-    /* OLED Black */
-    --color-bg-surface: #0f0f0f;
-    /* Deep Grey */
-    --color-bg-surface-glass: rgba(20, 20, 20, 0.6);
-    --color-bg-overlay: rgba(0, 0, 0, 0.85);
+    /* Colors - Piqaboo / ReMarkable Dark */
+    --bg-app: #060709;
+    --bg-paper: #0f1114;
+    /* Matte Paper */
+    --bg-paper-2: #0b0d10;
 
-    /* Text */
-    --color-text-primary: #ededed;
-    --color-text-secondary: #888888;
-    --color-text-muted: #444444;
+    --color-ink: rgba(245, 243, 235, 0.92);
+    /* Off-white chalk ink */
+    --color-text-muted: rgba(245, 243, 235, 0.62);
+    --color-text-faint: rgba(245, 243, 235, 0.38);
+
+    --border-edge: rgba(245, 243, 235, 0.18);
+    --border-edge-faint: rgba(245, 243, 235, 0.10);
 
     /* Accents */
-    --color-accent: #ffffff;
-    --color-accent-soft: rgba(255, 255, 255, 0.1);
-    --color-accent-glow: 0 0 20px rgba(255, 255, 255, 0.15);
+    --color-remote: rgba(145, 196, 255, 0.70);
+    --color-local: rgba(255, 196, 120, 0.72);
+    --color-live: rgba(128, 255, 196, 0.75);
+    --color-warn: rgba(255, 216, 120, 0.78);
+    --color-bad: rgba(255, 120, 120, 0.78);
 
-    /* Borders */
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-hover: rgba(255, 255, 255, 0.2);
+    /* Shadows */
+    --shadow-depth: 0 16px 40px rgba(0, 0, 0, 0.60);
+    --shadow-soft: 0 8px 18px rgba(0, 0, 0, 0.45);
 
-    /* Typography */
-    --font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-size-2xs: 0.65rem;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.5rem;
-    --font-size-2xl: 2rem;
+    /* Typography - Technical */
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
 
-    /* Spacing & Layout */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-    --app-max-width: 480px;
-
-    /* Glass Effect */
-    --glass-blur: 20px;
-    --glass-border: 1px solid rgba(255, 255, 255, 0.06);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-    /* Animation */
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --anim-duration: 0.4s;
+    /* Layout */
+    --radius-base: 18px;
+    --border-style: 1px dashed var(--border-edge);
 }
 
 body {
-    background-color: #000;
-    /* Ensure overscroll is black */
-    color: var(--color-text-primary);
-    font-family: var(--font-family-base);
-    -webkit-font-smoothing: antialiased;
+    background: linear-gradient(180deg, var(--bg-app), #040506);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    /* Default to Mono for this theme */
 }

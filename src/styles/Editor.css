@@ -1,87 +1,99 @@
-/* Editor Layout - V2 */
+/* Editor Layout - Digital Paper */
 .editor-layout {
     display: flex;
     flex-direction: column;
     height: 100%;
+    background: var(--bg-paper-2);
 }
 
 .editor-header {
-    height: 60px;
-    padding: 0 var(--spacing-md);
+    height: 54px;
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--color-bg-surface-glass);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-bottom: var(--glass-border);
-    z-index: 10;
+    border-bottom: 1px dashed var(--border-edge);
+    background: var(--bg-app);
+}
+
+.editor-title {
+    text-align: center;
+}
+
+.editor-title h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+}
+
+.editor-title span {
+    font-size: 9px;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
 }
 
 /* Timeline */
 .timeline-area {
     flex: 1;
     overflow-y: auto;
-    padding: var(--spacing-md);
+    padding: 16px;
     padding-bottom: 200px;
-    /* Space for chat dock */
 }
 
 .timeline-tile {
     display: flex;
     align-items: center;
-    background: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    background: var(--bg-paper);
+    border: 1px dashed var(--border-edge);
+    border-radius: 4px;
+    /* Strips looking */
+    padding: 8px;
+    margin-bottom: 8px;
     cursor: grab;
 }
 
 .timeline-tile.dragging {
     opacity: 0.5;
-    background: var(--color-bg-surface-glass);
-    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.05);
+    border-style: solid;
 }
 
 .tile-handle {
-    padding: 0 var(--spacing-sm);
-    color: var(--color-text-muted);
+    padding: 0 8px;
+    color: var(--color-text-faint);
     cursor: grab;
 }
 
 .tile-thumb {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    background: #333;
-    margin-right: var(--spacing-md);
-    flex-shrink: 0;
-}
-
-.tile-info {
-    flex: 1;
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    background: #222;
+    margin-right: 12px;
+    border: 1px solid var(--border-edge-faint);
 }
 
 .tile-info h4 {
-    font-size: var(--font-size-base);
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
     margin-bottom: 4px;
 }
 
 .tile-meta {
-    font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
-    display: flex;
-    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--color-text-muted);
 }
 
 .tile-duration {
-    color: var(--color-accent);
+    color: var(--color-ink);
+    font-weight: 700;
 }
 
-/* Director Chat Dock v2 */
+/* Director Chat Dock - Paper Style */
 .director-chat-dock {
     position: absolute;
     bottom: 0;
@@ -89,48 +101,42 @@
     width: 100%;
     z-index: 20;
 
-    /* V2 Glass */
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: var(--bg-app);
+    border-top: 1px solid var(--border-edge);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
 }
 
 .chat-input-area {
-    padding: var(--spacing-md);
+    padding: 12px 16px;
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: 12px;
 }
 
 .chat-input-field {
     flex: 1;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 12px 16px;
-    color: #fff;
-    font-size: 14px;
+    border: 1px dashed var(--border-edge);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 11px;
     outline: none;
-    transition: all 0.2s;
 }
 
 .chat-input-field:focus {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-style: solid;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .btn-send {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: var(--color-accent);
-    color: #000;
+    background: var(--color-ink);
+    color: var(--bg-app);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,30 +145,32 @@
 .chat-history {
     max-height: 250px;
     overflow-y: auto;
-    padding: var(--spacing-md);
-    padding-bottom: 0;
+    padding: 16px;
+    border-bottom: 1px dashed var(--border-edge-faint);
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 .chat-message {
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 14px;
-    max-width: 85%;
-    line-height: 1.4;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    max-width: 90%;
 }
 
 .chat-message.ai {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed var(--border-edge-faint);
     align-self: flex-start;
-    border-bottom-left-radius: 2px;
+    color: var(--color-text-muted);
 }
 
 .chat-message.user {
-    background: var(--color-accent);
-    color: #000;
+    background: var(--color-ink);
+    color: var(--bg-app);
     align-self: flex-end;
-    border-bottom-right-radius: 2px;
+    font-weight: 700;
 }

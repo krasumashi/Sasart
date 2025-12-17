@@ -1,0 +1,131 @@
+/* Sidebar Layout */
+.sidebar-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: 100vh;
+    padding: 18px;
+    gap: 18px;
+    background: var(--bg-app);
+}
+
+.sidebar-pane {
+    border: 1px solid var(--border-edge-faint);
+    border-radius: 18px;
+    background: rgba(245, 243, 235, 0.02);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+}
+
+.brand-header {
+    padding: 10px 10px 12px;
+    border-bottom: 1px solid var(--border-edge-faint);
+    margin-bottom: 14px;
+}
+
+.brand-name {
+    font-family: var(--font-mono);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 14px;
+    margin: 0;
+    color: var(--color-ink);
+}
+
+.brand-sub {
+    margin-top: 8px;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    line-height: 1.25;
+}
+
+.nav-section-title {
+    margin: 14px 10px 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-btn {
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px dashed rgba(245, 243, 235, 0.16);
+    background: rgba(0, 0, 0, 0.16);
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: transform .08s ease, background .12s ease, border .12s ease;
+    font-size: 13px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(245, 243, 235, 0.03);
+    border-color: rgba(245, 243, 235, 0.22);
+}
+
+.sidebar-btn.active {
+    border-style: solid;
+    border-color: rgba(145, 196, 255, 0.45);
+    background: rgba(145, 196, 255, 0.06);
+    color: #fff;
+}
+
+.main-stage {
+    position: relative;
+    border-radius: 46px;
+    /* Phone-like if wanted, or just panel */
+    background: var(--bg-paper-2);
+    border: 1px solid var(--border-edge-faint);
+    overflow: hidden;
+    box-shadow: var(--shadow-depth);
+}
+
+/* Responsive: Mobile overrides */
+@media (max-width: 768px) {
+    .sidebar-layout {
+        display: block;
+        padding: 0;
+    }
+
+    .sidebar-pane {
+        display: none;
+        /* Hide sidebar on mobile for now, implementing drawer later? Or bottom nav style override */
+    }
+
+    .main-stage {
+        height: 100%;
+        border-radius: 0;
+        border: none;
+    }
+
+    /* Simple mobile nav bar fixed bottom */
+    .mobile-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-paper);
+        border-top: 1px dashed var(--border-edge);
+        display: flex;
+        padding: 10px;
+        justify-content: space-around;
+        z-index: 100;
+    }
+}

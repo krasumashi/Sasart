@@ -2,14 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
-# Proxy API requests to Render Backend
-[[redirects]]
-  from = "/api/*"
-  to = "https://sasart.onrender.com/api/:splat"
-  status = 200
-  force = true
-
-# SPA Fallback (Must be last)
+# SPA Fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import StudioLayout from './components/layout/StudioLayout';
+import SidebarLayout from './components/layout/SidebarLayout';
 import Home from './views/Home';
 import Library from './views/Library';
 import Create from './views/Create';
@@ -11,7 +11,7 @@ export default function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/" element={<StudioLayout />}>
+          <Route path="/" element={<SidebarLayout />}>
             <Route index element={<Home />} />
             <Route path="library" element={<Library />} />
             <Route path="create" element={<Create />} />
